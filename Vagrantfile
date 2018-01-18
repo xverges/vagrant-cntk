@@ -46,6 +46,7 @@ Vagrant.configure("2") do |config|
     # Python 3.6.2 breaks dynamic linkking https://github.com/ContinuumIO/anaconda-issues/issues/6401
     conda install --yes python=3.6.1 jupyter=1.0.0
     pip install https://cntk.ai/PythonWheel/CPU-Only/cntk-2.3.1-cp36-cp36m-linux_x86_64.whl
+    pip install pytest
     python -c "import cntk; print(cntk.__version__)"
   SHELL
 
