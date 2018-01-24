@@ -24,7 +24,13 @@ Vagrant.configure("2") do |config|
     end
 
     mem = mem / 1024 / 4
-    vb.customize ["modifyvm", :id, "--memory", mem]
+    vb.memory = mem
+
+    # Give VM all the CPUs available (OSX only)
+    if host =~ /darwin/
+        cpus = `system_profiler SPHardwareDataType | grep 'Cores' | sed -e 's/.*[^0-9]//g' `.strip
+        vb.cpus = cpus
+    end
   end
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
